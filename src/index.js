@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./styles.css";
-function Tweet() {
+function Tweet({ tweet }) {
   return (
     <div className="tweet">
       <Avatar />
@@ -54,4 +54,16 @@ const MoreOptionsButton = () => (
   <i className="fa fa-ellipsis-h more-options-button" />
 );
 
-ReactDOM.render(<Tweet />, document.querySelector("#root"));
+const testTweet = {
+  message: "tweet cannot be over 140 charecters",
+  gravatar: "xyz",
+  author: {
+    handle: "Jack Schofield",
+    name: "@jackSchofield"
+  },
+  likes: 2,
+  retweets: 0,
+  timestamp: "1-03-2021 19:10:11"
+};
+
+ReactDOM.render(<Tweet tweet={testTweet} />, document.querySelector("#root"));
