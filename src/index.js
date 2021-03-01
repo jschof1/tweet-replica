@@ -6,8 +6,8 @@ function Tweet({ tweet }) {
     <div className="tweet">
       <Avatar />
       <div className="content">
-        <Author /> <Time />
-        <Message />
+        <Author author={tweet.author} /> <Time time={tweet.timestamp} />
+        <Message text={tweet.message} />
         <div className="buttons">
           <ReplyButton />
           <RetweetButton />
@@ -19,30 +19,26 @@ function Tweet({ tweet }) {
   );
 }
 
-function Avatar() {
-  return (
-    <img
-      src="https://www.gravatar.com/avatar/nothing"
-      className="avatar"
-      alt="avatar"
-    />
-  );
+function Avatar({ hash }) {
+  const url = `https://www.gravatar.com/avatar/${hash}`;
+  return <img src={url} className="avatar" alt="avatar" />;
 }
 
-function Message() {
-  return <div className="message">this tweet is less than 140 characters.</div>;
+function Message({ text }) {
+  return <div className="message">{text}</div>;
 }
 
-function Author() {
+function Author({ author }) {
+  const { name, handle } = author;
   return (
     <span className="author">
-      <span className="name"> Jack Schofield </span>
-      <span className="handle"> @jackschofield96 </span>
+      <span className="name"> {name}</span>
+      <span className="handle"> {handle} </span>
     </span>
   );
 }
 
-const Time = () => <span className="time">3h ago</span>;
+const Time = ({ time }) => <span className="time">{time}</span>;
 
 const ReplyButton = () => <i className="fa fa-reply reply-button" />;
 
